@@ -13,15 +13,16 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Build the mod for Android64
-        uses: geode-sdk/build-geode-mod@main
-        id: build
-        with:
-          target: Android64
-          # The CLI and SDK are automatically installed by this action.
+      - name: Install Geode CLI
+        run: |
+          wget -qO- https://raw.githubusercontent.com/geode-sdk/cli/main/install.sh | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Build for Android64
+        run: geode build -p android64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: frame-counter-android64.geode
-          path: ${{ steps.build.outputs.build-output }}
+          path: build-android64/*.geode
