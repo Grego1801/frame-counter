@@ -13,10 +13,12 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Geode CLI
+      - name: Download and Install Geode CLI
         run: |
-          wget -qO- https://raw.githubusercontent.com/geode-sdk/cli/main/install.sh | bash
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          wget https://github.com/geode-sdk/cli/releases/download/v3.7.4/geode-cli-v3.7.4-linux.zip
+          unzip geode-cli-v3.7.4-linux.zip
+          chmod +x geode
+          sudo mv geode /usr/local/bin/
 
       - name: Build for Android64
         run: geode build -p android64
