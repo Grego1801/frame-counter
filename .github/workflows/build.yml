@@ -22,6 +22,7 @@ jobs:
 
       - name: Setup Geode profile and SDK
         run: |
+          mkdir -p ~/.geode
           rm -rf ~/.geode/sdk
           geode profile add --name default ~/.geode/sdk android64
           geode sdk install ~/.geode/sdk
