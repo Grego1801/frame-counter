@@ -15,10 +15,9 @@ jobs:
 
       - name: Setup Geode CLI
         run: |
-          wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux.zip
-          unzip geode-cli-linux.zip
-          chmod +x geode
-          sudo mv geode /usr/local/bin/
+          wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux
+          chmod +x geode-cli-linux
+          sudo mv geode-cli-linux /usr/local/bin/geode
 
       - name: Build for Android64
         run: geode build -p android64
