@@ -31,6 +31,8 @@ jobs:
           echo "GEODE_SDK=$HOME/.geode/sdk" >> $GITHUB_ENV
 
       - name: Build for Android64
+        env:
+          GEODE_SDK: /home/runner/.geode/sdk
         run: geode build -p android64
 
       - name: Upload artifact
