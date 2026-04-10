@@ -26,10 +26,9 @@ jobs:
           rm -rf ~/.geode/sdk
           geode profile add --name default ~/.geode/sdk android64
           geode sdk install ~/.geode/sdk
-          echo "GEODE_SDK=$HOME/.geode/sdk" >> $GITHUB_ENV
 
       - name: Build for Android64
-        run: geode build -p android64
+        run: GEODE_SDK="$HOME/.geode/sdk" geode build -p android64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
