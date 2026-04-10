@@ -20,10 +20,9 @@ jobs:
           chmod +x geode
           sudo mv geode /usr/local/bin/
 
-      - name: Setup Geode config and SDK
+      - name: Setup Geode profile and SDK
         run: |
-          mkdir -p ~/.config/geode/profiles/default
-          echo '{"name":"default","sdk":"stable"}' > ~/.config/geode/profiles/default/profile.json
+          geode profile add "default" "."
           geode sdk install
 
       - name: Build for Android64
