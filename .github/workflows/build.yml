@@ -22,17 +22,15 @@ jobs:
 
       - name: Setup Geode profile and SDK
         run: |
-          mkdir -p ~/.geode
-          rm -rf ~/.geode/sdk
-          geode profile add --name default ~/.geode/sdk android64
-          geode sdk install ~/.geode/sdk
-          export GEODE_SDK="$HOME/.geode/sdk"
+          mkdir -p /home/runner/.geode
+          rm -rf /home/runner/.geode/sdk
+          geode profile add --name default "/home/runner/.geode/sdk" android64
+          geode sdk install "/home/runner/.geode/sdk"
+          export GEODE_SDK="/home/runner/.geode/sdk"
           geode sdk install-binaries
-          echo "GEODE_SDK=$HOME/.geode/sdk" >> $GITHUB_ENV
+          echo "GEODE_SDK=/home/runner/.geode/sdk" >> $GITHUB_ENV
 
       - name: Build for Android64
-        env:
-          GEODE_SDK: /home/runner/.geode/sdk
         run: geode build -p android64
 
       - name: Upload artifact
