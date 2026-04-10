@@ -1,0 +1,30 @@
+name: Build Geode Mod
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Geode CLI
+        run: |
+          wget https://github.com/geode-sdk/cli/releases/latest/download/geode-cli-linux.zip
+          unzip geode-cli-linux.zip
+          chmod +x geode
+          sudo mv geode /usr/local/bin/
+
+      - name: Build for Android64
+        run: geode build -p android64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frame-counter-android64.geode
+          path: build-android64/*.geode

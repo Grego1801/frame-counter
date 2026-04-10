@@ -1,0 +1,14 @@
+{
+    "geode": "2.0.0-beta.27",
+    "version": "v1.0.0",
+    "id": "Grego1801.frame_counter",
+    "name": "Frame Counter",
+    "developer": "Grego",
+    "description": "Writes current gameplay frame to a file for external macro sync.",
+    "resources": {
+        "files": []
+    },
+    "settings": {},
+    "tags": ["utility"],
+    "dependencies": []
+}
