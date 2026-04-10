@@ -24,10 +24,16 @@ jobs:
         run: |
           mkdir -p /home/runner/.geode
           rm -rf /home/runner/.geode/sdk
+          
           geode profile add --name default "/home/runner/.geode/sdk" android64
+          geode profile select default
           geode sdk install "/home/runner/.geode/sdk"
+          
           export GEODE_SDK="/home/runner/.geode/sdk"
-          geode sdk install-binaries
+          geode sdk set-path "/home/runner/.geode/sdk"
+          
+          geode sdk install-binaries -p android64
+          
           echo "GEODE_SDK=/home/runner/.geode/sdk" >> $GITHUB_ENV
 
       - name: Build for Android64
