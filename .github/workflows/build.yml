@@ -20,6 +20,9 @@ jobs:
           chmod +x geode
           sudo mv geode /usr/local/bin/
 
+      - name: Create Geode profile
+        run: geode profile create default
+
       - name: Install Geode SDK
         run: geode sdk install
 
